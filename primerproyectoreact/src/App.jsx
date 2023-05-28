@@ -33,8 +33,8 @@ const App = () => {
         <div className="gallery" key={character.id}>
           <img src={character.image} alt={character.name} />
           <h2>id: {character.id}</h2>
-          <h2>name: {character.name}</h2>
           <h2>status: {character.status}</h2>
+          <h2>name: {character.name}</h2>
           <h2>origin: {character.origin.name}</h2>
         </div>
       ))}
