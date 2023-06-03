@@ -1,6 +1,6 @@
 import "./App.css";
-
 import React from "react";
+import { getAllCharacters } from "./service/serviceapi";
 
 const charactersMock = [
   {
@@ -16,16 +16,15 @@ const charactersMock = [
 ];
 
 const App = () => {
+  // nombre variable, función a cambiar = valor inicial
+  // El useState crea un estado cuyo valor inicial es el characterlist y lo cambia en setcharacterList
   const [characterList, setCharacterList] = React.useState(charactersMock);
+  // llamada al servicio para llamar a la api
+  // El useEffect se utilza para llamar y/o modificar a cualquier dato o servicio externo
   React.useEffect(() => {
-    (async () => {
-      let data = await fetch(`https://rickandmortyapi.com/api/character/`).then(
-        (res) => res.json()
-      );
-
-      setCharacterList(data.results);
-    })();
+    getAllCharacters().then((characters) => setCharacterList(characters));
   }, []);
+  // pintamos llamando a cada
   return (
     <>
       <h1>Rickand and Morty</h1>
@@ -35,7 +34,7 @@ const App = () => {
           <h2>id: {character.id}</h2>
           <h2>status: {character.status}</h2>
           <h2>name: {character.name}</h2>
-          <h2>origin: {character.origin.name}</h2>
+          {/* <h2>origin: {character.origin.name}</h2> */}
         </div>
       ))}
     </>
